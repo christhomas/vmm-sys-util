@@ -5,6 +5,7 @@
 ### Added
 
 - [[#254](https://github.com/rust-vmm/vmm-sys-util/pull/254)]: Support `TFD_NONBLOCK` for `timerfd::TimerFd`.
+- [[#268](https://github.com/rust-vmm/vmm-sys-util/pull/268)]: Add macOS support for the `signal` module. The shim is gated behind `#[cfg(target_os = "macos")]` and adds no new dependencies; Linux and Android builds are unaffected. macOS consumers needing epoll-shaped polling should use `mio` (see vhost #316). `eventfd` is not provided: the cross-platform `EventConsumer`/`EventNotifier` primitive added in #244 already covers the daemon use case, and `vhost`'s public traits that take `&EventFd` are Linux-only callers (a follow-up gates them on Linux).
 
 ## v0.15.0
 
